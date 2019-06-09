@@ -1,0 +1,11 @@
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\bin\Debug\netcoreapp2.2\EcoServiceApi.deps.json
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\bin\Debug\netcoreapp2.2\EcoServiceApi.runtimeconfig.json
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\bin\Debug\netcoreapp2.2\EcoServiceApi.runtimeconfig.dev.json
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\bin\Debug\netcoreapp2.2\EcoServiceApi.dll
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.csprojAssemblyReference.cache
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.csproj.CoreCompileInputs.cache
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.RazorAssemblyInfo.cache
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.RazorAssemblyInfo.cs
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.AssemblyInfoInputs.cache
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.AssemblyInfo.cs
+D:\Repositories\Diploma.Api\EcoServiceApi\EcoServiceApi\obj\Debug\netcoreapp2.2\EcoServiceApi.RazorTargetAssemblyInfo.cache
