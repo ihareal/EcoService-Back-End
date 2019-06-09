@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EcoServiceApi.Models
 {
-    public class UserNewsDetail
+    public class UserEventDetail
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,8 +16,9 @@ namespace EcoServiceApi.Models
         public int UserId { get; set; }
         public UserDetail UserDetail { get; set; }
 
-        public int NewsId { get; set; }
-        public NewsDetail NewsDetail { get; set; }
+        public int EventId { get; set; }
+        public EventDetail EventDetail { get; set; }
+
 
     }
 }

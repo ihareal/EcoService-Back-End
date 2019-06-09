@@ -73,7 +73,7 @@ namespace EcoServiceApi.Controllers
 
         // POST: api/UserDetails
         [HttpPost]
-        public async Task<ActionResult<UserDetail>> PostUserDetail(UserDetail userDetail)
+        public async Task<ActionResult<UserDetail>> PostUserDetail([FromBody]UserDetail userDetail)
         {
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();

@@ -29,6 +29,9 @@ namespace EcoServiceApi.Models
         public string Password { get; set; }
 
         [Required]
+        public string District { get; set; }
+
+        [Required]
         public string DwellingType { get; set; }
 
         /// <summary>
@@ -43,7 +46,7 @@ namespace EcoServiceApi.Models
 
         #region FK
 
-        public List<EventDetail> EventDetails { get; set; }
+        public List<UserEventDetail> UserEventDetail { get; set; }
         public List<PollutionDetail> PollutionDetails { get; set; }
         public List<UserNewsDetail> UserNewsDetails { get; set; }
 

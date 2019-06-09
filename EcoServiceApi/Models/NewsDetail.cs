@@ -36,11 +36,11 @@ namespace EcoServiceApi.Models
 
         #region FK
 
-
         /// <summary>
         /// Many to many with users
         /// </summary>
         public List<UserNewsDetail> UserNewsDetails { get; set; }
+
         #endregion
     }
 }

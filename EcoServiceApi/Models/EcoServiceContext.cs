@@ -15,9 +15,7 @@ namespace EcoServiceApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<UserNewsDetail>()
-            //    .HasOne<UserDetail>(u => u.UserDetail)
-            //   .WithMany(s => s.UserNewsDetails)
+            
         }
 
         public DbSet<UserDetail> UserDetails { get; set; }

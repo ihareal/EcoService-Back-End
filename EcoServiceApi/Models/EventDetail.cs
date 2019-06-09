@@ -48,8 +48,7 @@ namespace EcoServiceApi.Models
 
         #region FK
 
-        [ForeignKey("UserId")]
-        public UserDetail UserDetail { get; set; }
+        public List<UserEventDetail> UserEventDetail { get; set; }
 
         #endregion
 

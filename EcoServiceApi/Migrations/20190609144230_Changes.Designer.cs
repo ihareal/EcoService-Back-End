@@ -4,14 +4,16 @@ using EcoServiceApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EcoServiceApi.Migrations
 {
     [DbContext(typeof(EcoServiceContext))]
-    partial class EcoServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20190609144230_Changes")]
+    partial class Changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,11 +138,13 @@ namespace EcoServiceApi.Migrations
 
                     b.Property<int>("EventId");
 
+                    b.Property<int?>("UserDetailUserId");
+
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("UserDetailUserId");
 
                     b.HasIndex("UserId");
 
@@ -176,12 +180,11 @@ namespace EcoServiceApi.Migrations
 
             modelBuilder.Entity("EcoServiceApi.Models.UserEventDetail", b =>
                 {
-                    b.HasOne("EcoServiceApi.Models.EventDetail", "EventDetail")
-                        .WithMany("UserEventDetail")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("EcoServiceApi.Models.UserDetail", "UserDetail")
+                        .WithMany("UserEventDetail")
+                        .HasForeignKey("UserDetailUserId");
+
+                    b.HasOne("EcoServiceApi.Models.EventDetail", "EventDetail")
                         .WithMany("UserEventDetail")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
