@@ -12,38 +12,31 @@ namespace EcoServiceApi.Models
         #region Properties
 
         [Key]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(20)")]
         public string Email { get; set; }
 
         /// <summary>
         /// 0 - user
         /// 1 - admin rights
-        /// </summary>
+        /// </summary>        
         [Required]
-        [Column(TypeName = "nvarchar(4)")]
         public int isAdmin { get; set; }
 
-        [Column(TypeName = "nvarchar(20)")]
+        [Required]
         public string Password { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(10)")]
         public string DwellingType { get; set; }
 
         /// <summary>
         /// flat
         /// house
         /// </summary>
-
-        [Required]
-        [Column(TypeName = "nvarchar(10)")]
         public int StageNumber { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(5)")]
         public int StageAmount { get; set; }
 
         #endregion
@@ -52,7 +45,8 @@ namespace EcoServiceApi.Models
 
         public List<EventDetail> EventDetails { get; set; }
         public List<PollutionDetail> PollutionDetails { get; set; }
-        public List<NewsDetail> NewsDetails { get; set; }
+        public List<UserNewsDetail> UserNewsDetails { get; set; }
+
         #endregion
 
     }

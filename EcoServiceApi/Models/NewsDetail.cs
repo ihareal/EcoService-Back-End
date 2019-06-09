@@ -11,19 +11,18 @@ namespace EcoServiceApi.Models
     {
         #region Properties
 
-        [Required]
-        [Column(TypeName = "nvarchar(20)")]
-        public string Title { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int NewsId { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(20)")]
+        public string Title { get; set; }
+
         public string Description { get; set; }
 
         /// <summary>
         /// stored in minutes
         /// </summary>
-        [Required]
-        [Column(TypeName = "nvarchar(4)")]
         public int ReadingTime { get; set; }
 
         /// <summary>
@@ -31,15 +30,17 @@ namespace EcoServiceApi.Models
         /// 1 - read
         /// </summary>
         [Required]
-        [Column(TypeName = "nvarchar(1)")]
         public int isRead { get; set; }
 
         #endregion
 
         #region FK
 
-        public UserDetail UserDetail { get; set; }
 
+        /// <summary>
+        /// Many to many with users
+        /// </summary>
+        public List<UserNewsDetail> UserNewsDetails { get; set; }
         #endregion
     }
 }
