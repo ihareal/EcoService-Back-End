@@ -30,7 +30,7 @@ namespace EcoServiceApi
         {
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                c.AddPolicy("AllowOrigin", options => { options.AllowAnyOrigin().AllowAnyMethod();});
             });
             /// Such object properties as it was on entities
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
