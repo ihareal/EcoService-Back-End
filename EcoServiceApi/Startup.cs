@@ -30,7 +30,7 @@ namespace EcoServiceApi
         {
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => { options.AllowAnyOrigin().AllowAnyMethod();});
+                c.AddPolicy("AllowOrigin", options => { options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();});
             });
             /// Such object properties as it was on entities
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -50,7 +50,7 @@ namespace EcoServiceApi
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Enable cors for frontend requests
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
