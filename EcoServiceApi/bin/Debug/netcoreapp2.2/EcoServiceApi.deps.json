@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "ab191258512ce494c5d81e2836e7944dd64ff62b"
+    "signature": "33c8edbb209342794f1e43efc1d1c68f7b0db97f"
   },
   "compilationOptions": {
     "defines": [
@@ -25,11 +25,14 @@
       "EcoServiceApi/1.0.0": {
         "dependencies": {
           "AngleSharp": "0.12.1",
+          "ChilkatDnCore": "9.5.0.78",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.4",
           "Microsoft.NETCore.App": "2.2.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3"
+          "Microsoft.SyndicationFeed.ReaderWriter": "1.0.2",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
+          "System.ServiceModel.Syndication": "4.5.0"
         },
         "runtime": {
           "EcoServiceApi.dll": {}
@@ -50,6 +53,45 @@
         },
         "compile": {
           "lib/netstandard2.0/AngleSharp.dll": {}
+        }
+      },
+      "ChilkatDnCore/9.5.0.78": {
+        "dependencies": {
+          "ChilkatNativeLib": "9.5.0.78",
+          "Microsoft.NETCore.App": "2.2.0"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/ChilkatDnCore.dll": {
+            "assemblyVersion": "9.5.0.78",
+            "fileVersion": "9.5.0.78"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp1.0/ChilkatDnCore.dll": {}
+        }
+      },
+      "ChilkatNativeLib/9.5.0.78": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libchilkatDnCore-9_5_0.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libchilkatDnCore-9_5_0.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win7-x64/native/chilkatDnCore-9_5_0.dll": {
+            "rid": "win7-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win7-x86/native/chilkatDnCore-9_5_0.dll": {
+            "rid": "win7-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
@@ -122,6 +164,23 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/2.2.4": {},
+      "Microsoft.SyndicationFeed.ReaderWriter/1.0.2": {
+        "dependencies": {
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.SyndicationFeed.ReaderWriter.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.SyndicationFeed.ReaderWriter.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.Web.CodeGeneration/2.2.3": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "2.2.0",
@@ -439,6 +498,17 @@
           "System.Reflection.Extensions": "4.3.0",
           "System.Resources.ResourceManager": "4.3.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "System.ServiceModel.Syndication/4.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Syndication.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26515.6"
+          }
+        },
+        "compile": {
+          "ref/netcoreapp2.1/System.ServiceModel.Syndication.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3585,6 +3655,20 @@
       "path": "anglesharp/0.12.1",
       "hashPath": "anglesharp.0.12.1.nupkg.sha512"
     },
+    "ChilkatDnCore/9.5.0.78": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oFN/bPnagICaj289l0toLNdN5HcDDfVUzbHjIIBw23WqSI3nMLUjrOyWbuZOTevn6jvd0W0IsXrxnM1VDF7YsA==",
+      "path": "chilkatdncore/9.5.0.78",
+      "hashPath": "chilkatdncore.9.5.0.78.nupkg.sha512"
+    },
+    "ChilkatNativeLib/9.5.0.78": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3J+o7mdcZpRnSpJULU3v2kkUs2+8ypdvVb/eLGCv7YjTaRdKIcyD0jPomBl2EvuXHaVDnkGZqRwZOkd2pyCAAg==",
+      "path": "chilkatnativelib/9.5.0.78",
+      "hashPath": "chilkatnativelib.9.5.0.78.nupkg.sha512"
+    },
     "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
       "type": "package",
       "serviceable": true,
@@ -3619,6 +3703,13 @@
       "sha512": "sha512-cLJo6dikdFQd2j9cFHhC2M1rzUeYvJLR/m7cBcuKRI6ek5t5ZyGZ0hzEJwCQmKRDV4tAl5p+NIrfDjfqTK8POw==",
       "path": "microsoft.entityframeworkcore.analyzers/2.2.4",
       "hashPath": "microsoft.entityframeworkcore.analyzers.2.2.4.nupkg.sha512"
+    },
+    "Microsoft.SyndicationFeed.ReaderWriter/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o3F/WrKcVpcGYcVJeCTMfP0PLMl+uh7ndBQz9PBE6YvcJiSFj1/hbcqeiV8bAkFN8GMYT74398csaFoz6mfGIg==",
+      "path": "microsoft.syndicationfeed.readerwriter/1.0.2",
+      "hashPath": "microsoft.syndicationfeed.readerwriter.1.0.2.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.CodeGeneration/2.2.3": {
       "type": "package",
@@ -3759,6 +3850,13 @@
       "sha512": "sha512-Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
       "path": "system.linq.queryable/4.0.1",
       "hashPath": "system.linq.queryable.4.0.1.nupkg.sha512"
+    },
+    "System.ServiceModel.Syndication/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Tm3vhsv0PnrU7avYEP6vSQiqr+Dhe7N8NPbnInWMhSSmIMmutyfSg349pqnv0JboK3l/9eHNiX4KD5NMUsvhmQ==",
+      "path": "system.servicemodel.syndication/4.5.0",
+      "hashPath": "system.servicemodel.syndication.4.5.0.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",

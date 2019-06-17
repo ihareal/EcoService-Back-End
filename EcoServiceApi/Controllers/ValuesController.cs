@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml;
+using System.ServiceModel.Syndication;
 
 namespace EcoServiceApi.Controllers
 {
@@ -10,6 +11,7 @@ namespace EcoServiceApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
