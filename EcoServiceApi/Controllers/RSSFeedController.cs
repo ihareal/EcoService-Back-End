@@ -15,7 +15,7 @@ namespace EcoServiceApi.Controllers
     public class RSSFeedController : ControllerBase
     {
         /// <summary>
-        /// GET api/Default
+        /// GET api/RSSFeed
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -26,8 +26,8 @@ namespace EcoServiceApi.Controllers
             string RSSData = wclient.DownloadString(feed);
 
             XDocument xml = XDocument.Parse(RSSData);
-            var child = xml.Descendants("title");
-            var RSSFeedData = (from x in xml.Descendants()
+            var child = xml.Descendants("item");
+            var RSSFeedData = (from x in xml.Descendants("item")
                                select new RSSFeed
                                {
                                    Title = ((string)x.Element("title")),
