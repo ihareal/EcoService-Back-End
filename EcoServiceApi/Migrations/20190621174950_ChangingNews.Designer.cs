@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoServiceApi.Migrations
 {
     [DbContext(typeof(EcoServiceContext))]
-    [Migration("20190609144230_Changes")]
-    partial class Changes
+    [Migration("20190621174950_ChangingNews")]
+    partial class ChangingNews
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,14 +61,15 @@ namespace EcoServiceApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("DateTime2");
+
                     b.Property<string>("Description");
 
-                    b.Property<int>("ReadingTime");
+                    b.Property<string>("Link");
 
                     b.Property<string>("Title")
                         .IsRequired();
-
-                    b.Property<int>("isRead");
 
                     b.HasKey("NewsId");
 
@@ -132,38 +133,24 @@ namespace EcoServiceApi.Migrations
 
             modelBuilder.Entity("EcoServiceApi.Models.UserEventDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId");
 
                     b.Property<int>("EventId");
 
-                    b.Property<int?>("UserDetailUserId");
+                    b.HasKey("UserId", "EventId");
 
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserDetailUserId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("EventId");
 
                     b.ToTable("UserEventDetail");
                 });
 
             modelBuilder.Entity("EcoServiceApi.Models.UserNewsDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("NewsId");
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("NewsId");
+                    b.HasKey("NewsId", "UserId");
 
                     b.HasIndex("UserId");
 
@@ -180,11 +167,12 @@ namespace EcoServiceApi.Migrations
 
             modelBuilder.Entity("EcoServiceApi.Models.UserEventDetail", b =>
                 {
-                    b.HasOne("EcoServiceApi.Models.UserDetail", "UserDetail")
-                        .WithMany("UserEventDetail")
-                        .HasForeignKey("UserDetailUserId");
-
                     b.HasOne("EcoServiceApi.Models.EventDetail", "EventDetail")
+                        .WithMany("UserEventDetail")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EcoServiceApi.Models.UserDetail", "UserDetail")
                         .WithMany("UserEventDetail")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoServiceApi.Migrations
 {
     [DbContext(typeof(EcoServiceContext))]
-    [Migration("20190609144434_Changes_New")]
-    partial class Changes_New
+    [Migration("20190619170628_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,36 +132,24 @@ namespace EcoServiceApi.Migrations
 
             modelBuilder.Entity("EcoServiceApi.Models.UserEventDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId");
 
                     b.Property<int>("EventId");
 
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "EventId");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserEventDetail");
                 });
 
             modelBuilder.Entity("EcoServiceApi.Models.UserNewsDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("NewsId");
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("NewsId");
+                    b.HasKey("NewsId", "UserId");
 
                     b.HasIndex("UserId");
 

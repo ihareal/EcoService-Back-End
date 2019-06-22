@@ -9,16 +9,10 @@ namespace EcoServiceApi.Models
 {
     public class UserEventDetail
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         public int UserId { get; set; }
         public UserDetail UserDetail { get; set; }
 
         public int EventId { get; set; }
-        public EventDetail EventDetail { get; set; }
-
-
+        public EventDetail EventDetail { get; set; }    
     }
 }

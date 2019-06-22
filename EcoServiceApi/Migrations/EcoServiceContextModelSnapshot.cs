@@ -59,14 +59,15 @@ namespace EcoServiceApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("DateTime2");
+
                     b.Property<string>("Description");
 
-                    b.Property<int>("ReadingTime");
+                    b.Property<string>("Link");
 
                     b.Property<string>("Title")
                         .IsRequired();
-
-                    b.Property<int>("isRead");
 
                     b.HasKey("NewsId");
 
@@ -130,36 +131,24 @@ namespace EcoServiceApi.Migrations
 
             modelBuilder.Entity("EcoServiceApi.Models.UserEventDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("UserId");
 
                     b.Property<int>("EventId");
 
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "EventId");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserEventDetail");
                 });
 
             modelBuilder.Entity("EcoServiceApi.Models.UserNewsDetail", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("NewsId");
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("NewsId");
+                    b.HasKey("NewsId", "UserId");
 
                     b.HasIndex("UserId");
 

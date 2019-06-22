@@ -12,8 +12,15 @@ namespace EcoServiceApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RSSFeedController : ControllerBase
+    public class RssFeedController : ControllerBase
     {
+        private readonly EcoServiceContext _context; 
+
+        public RssFeedController(EcoServiceContext context)
+        {
+            _context = context;
+        }
+
         /// <summary>
         /// GET api/RSSFeed
         /// </summary>
@@ -27,7 +34,7 @@ namespace EcoServiceApi.Controllers
 
             XDocument xml = XDocument.Parse(RSSData);
             var child = xml.Descendants("item");
-            var RSSFeedData = (from x in xml.Descendants("item")
+            var rssFeedData = (from x in xml.Descendants("item")
                                select new RSSFeed
                                {
                                    Title = ((string)x.Element("title")),
@@ -35,7 +42,26 @@ namespace EcoServiceApi.Controllers
                                    Description = ((string)x.Element("description")),
                                    PubDate = ((string)x.Element("pubDate"))
                                });
-            return RSSFeedData;
+
+            //TODO: Get all news from the database and check existing news
+            List<NewsDetail> existingListNews = _context.NewsDetails.ToList(); 
+
+            List<NewsDetail> newsList = new List<NewsDetail>();
+            foreach(var rss in rssFeedData.Where(r => !existingListNews.Any(en => en.Title.Equals(r.Title))))
+            {
+                newsList.Add(new NewsDetail
+                {
+                    Description = rss.Description,
+                    Title = rss.Title,
+                    Link = rss.Link,
+                    Date = Convert.ToDateTime(rss.PubDate),
+                });
+            }
+
+            _context.NewsDetails.AddRange(newsList);
+            //TODO: Add list to database and SaveChanges
+            _context.SaveChanges();
+            return _context.NewsDetails.ToList();
         }
     }
 }

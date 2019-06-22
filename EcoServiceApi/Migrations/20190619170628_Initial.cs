@@ -9,6 +9,27 @@ namespace EcoServiceApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "EventDetails",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Latitude = table.Column<float>(nullable: false),
+                    Longitude = table.Column<float>(nullable: false),
+                    Status = table.Column<string>(nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "DateTime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "DateTime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "DateTime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventDetails", x => x.EventId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "NewsDetails",
                 columns: table => new
                 {
@@ -33,6 +54,7 @@ namespace EcoServiceApi.Migrations
                     Email = table.Column<string>(nullable: false),
                     isAdmin = table.Column<int>(nullable: false),
                     Password = table.Column<string>(nullable: false),
+                    District = table.Column<string>(nullable: false),
                     DwellingType = table.Column<string>(nullable: false),
                     StageNumber = table.Column<int>(nullable: false),
                     StageAmount = table.Column<int>(nullable: false)
@@ -40,33 +62,6 @@ namespace EcoServiceApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserDetails", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventDetails",
-                columns: table => new
-                {
-                    EventId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    Latitude = table.Column<float>(nullable: false),
-                    Longitude = table.Column<float>(nullable: false),
-                    Status = table.Column<string>(nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "DateTime2", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "DateTime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "DateTime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventDetails", x => x.EventId);
-                    table.ForeignKey(
-                        name: "FK_EventDetails_UserDetails_UserId",
-                        column: x => x.UserId,
-                        principalTable: "UserDetails",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,17 +88,39 @@ namespace EcoServiceApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserEventDetail",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false),
+                    EventId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserEventDetail", x => new { x.UserId, x.EventId });
+                    table.ForeignKey(
+                        name: "FK_UserEventDetail_EventDetails_EventId",
+                        column: x => x.EventId,
+                        principalTable: "EventDetails",
+                        principalColumn: "EventId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserEventDetail_UserDetails_UserId",
+                        column: x => x.UserId,
+                        principalTable: "UserDetails",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserNewsDetail",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     NewsId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserNewsDetail", x => x.Id);
+                    table.PrimaryKey("PK_UserNewsDetail", x => new { x.NewsId, x.UserId });
                     table.ForeignKey(
                         name: "FK_UserNewsDetail_NewsDetails_NewsId",
                         column: x => x.NewsId,
@@ -119,19 +136,14 @@ namespace EcoServiceApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventDetails_UserId",
-                table: "EventDetails",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PollutionDetails_UserId",
                 table: "PollutionDetails",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserNewsDetail_NewsId",
-                table: "UserNewsDetail",
-                column: "NewsId");
+                name: "IX_UserEventDetail_EventId",
+                table: "UserEventDetail",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserNewsDetail_UserId",
@@ -142,13 +154,16 @@ namespace EcoServiceApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EventDetails");
-
-            migrationBuilder.DropTable(
                 name: "PollutionDetails");
 
             migrationBuilder.DropTable(
+                name: "UserEventDetail");
+
+            migrationBuilder.DropTable(
                 name: "UserNewsDetail");
+
+            migrationBuilder.DropTable(
+                name: "EventDetails");
 
             migrationBuilder.DropTable(
                 name: "NewsDetails");

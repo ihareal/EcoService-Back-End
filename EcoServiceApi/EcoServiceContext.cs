@@ -15,7 +15,11 @@ namespace EcoServiceApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<UserNewsDetail>()
+                .HasKey(k => new {k.NewsId, k.UserId });
+
+            modelBuilder.Entity<UserEventDetail>()
+                .HasKey(k => new { k.UserId, k.EventId });
         }
 
         public DbSet<UserDetail> UserDetails { get; set; }

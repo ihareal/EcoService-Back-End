@@ -20,17 +20,10 @@ namespace EcoServiceApi.Models
 
         public string Description { get; set; }
 
-        /// <summary>
-        /// stored in minutes
-        /// </summary>
-        public int ReadingTime { get; set; }
+        public string Link { get; set; }
 
-        /// <summary>
-        /// 0 - doesn't read
-        /// 1 - read
-        /// </summary>
-        [Required]
-        public int isRead { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime Date { get; set; }
 
         #endregion
 
