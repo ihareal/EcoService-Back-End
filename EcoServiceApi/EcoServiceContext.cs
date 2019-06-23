@@ -26,5 +26,6 @@ namespace EcoServiceApi.Models
         public DbSet<PollutionDetail> PollutionDetails { get; set; }
         public DbSet<EventDetail> EventDetails { get; set; }
         public DbSet<NewsDetail> NewsDetails { get; set; }
+        public DbSet<UserEventDetail> UserEventDetails { get; set; }
     }
 }
