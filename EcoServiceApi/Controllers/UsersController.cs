@@ -19,9 +19,9 @@ namespace EcoServiceApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/login")]
-        public async Task<ActionResult<UserDetail>> Login([FromBody]string email, [FromBody]string password)
+        public async Task<ActionResult<UserDetail>> Login(string email, string password)
         {
             var user =  await _context.UserDetails.FirstOrDefaultAsync(u => u.Email.Equals(email.Trim()));
 
@@ -41,7 +41,6 @@ namespace EcoServiceApi.Controllers
 
             return user;
         }
-
         [HttpPost]
         [Route("api/[controller]/events")]
         public async Task<ActionResult> AddEvent([FromBody] int userId, [FromBody] int eventId)
@@ -71,7 +70,7 @@ namespace EcoServiceApi.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 BadRequest(ex.Message);
             }
@@ -92,7 +91,7 @@ namespace EcoServiceApi.Controllers
                 var events = await _context.EventDetails.Where(e => userEventsIds.Contains(e.EventId)).ToListAsync();
 
                 return events;
-                
+
             }
 
             catch (Exception ex)
