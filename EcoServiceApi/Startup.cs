@@ -44,13 +44,14 @@ namespace EcoServiceApi
                 });
 
             services.AddDbContext<EcoServiceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Enable cors for frontend requests
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors("AllowOrigin");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,6 +61,8 @@ namespace EcoServiceApi
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSignalR(routes => routes.MapHub<ChatHub>("/api/chat"));
 
             app.UseHttpsRedirection();
             app.UseMvc();

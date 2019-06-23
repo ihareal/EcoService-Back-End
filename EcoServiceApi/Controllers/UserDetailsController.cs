@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcoServiceApi.Models;
+using EcoServiceApi.Helpers;
 
 namespace EcoServiceApi.Controllers
 {
@@ -50,6 +49,12 @@ namespace EcoServiceApi.Controllers
                 return BadRequest();
             }
 
+            userDetail.Email = userDetail.Email.ToLower().Trim();
+            if (!string.IsNullOrEmpty(userDetail.Password))
+            {
+                userDetail.Password = PasswordEncryptor.Encrypt(userDetail.Password);
+            }
+
             _context.Entry(userDetail).State = EntityState.Modified;
 
             try
@@ -75,6 +80,13 @@ namespace EcoServiceApi.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDetail>> PostUserDetail(UserDetail userDetail)
         {
+            userDetail.Email = userDetail.Email.ToLower().Trim();
+
+            if (!string.IsNullOrEmpty(userDetail.Password))
+            {
+                userDetail.Password = PasswordEncryptor.Encrypt(userDetail.Password);
+            }
+
             _context.UserDetails.Add(userDetail);
             await _context.SaveChangesAsync();
 
