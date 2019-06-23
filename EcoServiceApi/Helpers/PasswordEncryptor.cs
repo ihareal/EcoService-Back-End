@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace EcoServiceApi.Helpers
@@ -20,7 +21,7 @@ namespace EcoServiceApi.Helpers
         /// <returns></returns>
         public static string Encrypt(string password)
         {
-            var saltBytes = Convert.FromBase64String(_salt);
+            var saltBytes = Encoding.ASCII.GetBytes(_salt);
 
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
