@@ -32,10 +32,12 @@ namespace EcoServiceApi.Controllers
         {
             var userDetail = await _context.UserDetails.FindAsync(id);
 
+
             if (userDetail == null)
             {
                 return NotFound();
             }
+            userDetail.Password = "";
 
             return userDetail;
         }
@@ -85,6 +87,11 @@ namespace EcoServiceApi.Controllers
             if (!string.IsNullOrEmpty(userDetail.Password))
             {
                 userDetail.Password = PasswordEncryptor.Encrypt(userDetail.Password);
+            }
+
+            if(await _context.UserDetails.AnyAsync(u => u.Email == userDetail.Email))
+            {
+                return BadRequest($"User with {userDetail.Email} already exist.");
             }
 
             _context.UserDetails.Add(userDetail);
