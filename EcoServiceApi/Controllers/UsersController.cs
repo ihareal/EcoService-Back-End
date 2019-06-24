@@ -41,9 +41,9 @@ namespace EcoServiceApi.Controllers
 
             return user;
         }
-        [HttpPost]
+        [HttpGet]
         [Route("api/[controller]/events")]
-        public async Task<ActionResult> AddEvent([FromBody] int userId, [FromBody] int eventId)
+        public async Task<ActionResult> AddEvent(int userId, int eventId)
         {
             try
             {
