@@ -58,14 +58,14 @@ namespace EcoServiceApi.Controllers
 
                 if (user == null)
                 {
-                    BadRequest("User not fount");
+                    BadRequest("User not found");
                 }
 
                 var eventDetail = await _context.EventDetails.FirstOrDefaultAsync(u => u.EventId == eventId);
 
                 if (eventDetail == null)
                 {
-                    BadRequest("Event not fount");
+                    BadRequest("Event not found");
                 }
 
                 if (await _context.UserEventDetails.AnyAsync(e => e.UserId == userId && e.EventId == eventId))
@@ -85,13 +85,52 @@ namespace EcoServiceApi.Controllers
             return Ok();
         }
 
+
+        [HttpGet]
+        [Route("api/[controller]/eventDelete")]
+        public async Task<ActionResult> DeleteEvent(int userId, int eventId)
+        {
+            try
+            {
+                var user = await _context.UserDetails.FirstOrDefaultAsync(u => u.UserId == userId);
+
+                if (user == null)
+                {
+                    BadRequest("User not found");
+                }
+
+                var eventDetail = await _context.EventDetails.FirstOrDefaultAsync(u => u.EventId == eventId);
+
+                if (eventDetail == null)
+                {
+                    BadRequest("Event not found");
+                }
+
+                var deleteRow = new UserEventDetail()
+                {
+                    UserId = userId,
+                    EventId = eventId
+                };
+                _context.UserEventDetails.Remove(deleteRow);
+                await _context.SaveChangesAsync();
+            }
+
+            catch (Exception ex)
+            {
+                BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
+
+
         /// <summary>
         /// Get user events
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/[controller]/events")]
+        [Route("api/[controller]/eventsByUser")]
         public async Task<ActionResult<List<EventDetail>>> GetEvents(int userId)
         {
             try
