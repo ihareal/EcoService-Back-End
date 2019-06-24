@@ -27,6 +27,27 @@ namespace EcoServiceApi.Controllers
             return await _context.EventDetails.ToListAsync();
         }
 
+        [HttpGet]
+        [Route("HotEvents")]
+        public async Task<ActionResult<IEnumerable<EventDetail>>> GetHotEventDetails()
+        {
+            return await _context.EventDetails.Where(x => x.Status == "HOT").ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("WipEvents")]
+        public async Task<ActionResult<IEnumerable<EventDetail>>> GetWipEvents()
+        {
+            return await _context.EventDetails.Where(x => x.Status == "WIP").ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("FutureEvents")]
+        public async Task<ActionResult<IEnumerable<EventDetail>>> GetFutureEvents()
+        {
+            return await _context.EventDetails.Where(x => x.Status == "FUTURE").ToListAsync();
+        }
+
         // GET: api/EventDetails/5
         [HttpGet("{id}")]
         public async Task<ActionResult<EventDetail>> GetEventDetail(int id)

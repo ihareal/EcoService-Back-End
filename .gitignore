@@ -168,3 +168,16 @@ $RECYCLE.BIN/
 appCareBuilder.min.js
 appDashboard.min.js
 appPatients.min.js
+.vs/EcoServiceApi/v15/.suo
+.vs/EcoServiceApi/v15/.suo
+.vs/EcoServiceApi/v15/Server/sqlite3/storage.ide
+.vs/EcoServiceApi/v15/Server/sqlite3/storage.ide-shm
+.vs/EcoServiceApi/v15/Server/sqlite3/storage.ide-wal
+EcoServiceApi/bin/Debug/netcoreapp2.2/EcoServiceApi.deps.json
+EcoServiceApi/bin/Debug/netcoreapp2.2/EcoServiceApi.dll
+EcoServiceApi/bin/Debug/netcoreapp2.2/EcoServiceApi.pdb
+EcoServiceApi/obj/Debug/netcoreapp2.2/EcoServiceApi.csproj.CoreCompileInputs.cache
+EcoServiceApi/obj/Debug/netcoreapp2.2/EcoServiceApi.csproj.CoreCompileInputs.cache
+EcoServiceApi/obj/Debug/netcoreapp2.2/EcoServiceApi.dll
+EcoServiceApi/obj/Debug/netcoreapp2.2/EcoServiceApi.pdb
+EcoServiceApi/obj/EcoServiceApi.csproj.nuget.cache

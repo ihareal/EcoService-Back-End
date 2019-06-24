@@ -9,18 +9,12 @@ namespace EcoServiceApi.Models
 {
     public class EventDetail
     {
-        /// <summary>
-        /// Status - 0(pending) 1(approved by admin) 2(end)
-        /// Event connected with user from one to many
-        /// </summary>
         #region Properties
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventId { get; set; }
      
-        public int UserId { get; set; }
-
         [Required]
         public string Title { get; set; }
 

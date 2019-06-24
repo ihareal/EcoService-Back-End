@@ -41,6 +41,13 @@ namespace EcoServiceApi.Controllers
 
             return user;
         }
+
+        /// <summary>
+        /// Post to transfer table
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/[controller]/events")]
         public async Task<ActionResult> AddEvent(int userId, int eventId)
@@ -78,6 +85,11 @@ namespace EcoServiceApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Get user events
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/[controller]/events")]
         public async Task<ActionResult<List<EventDetail>>> GetEvents(int userId)
