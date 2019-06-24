@@ -131,17 +131,17 @@ namespace EcoServiceApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/[controller]/eventsByUser")]
-        public async Task<ActionResult<List<EventDetail>>> GetEvents(int userId)
+        public async Task<ActionResult<List<UserEventDetail>>> GetEvents(int userId)
         {
             try
             {
                 var userEvents = await _context.UserEventDetails.Where(e => e.UserId == userId).ToListAsync();
 
-                var userEventsIds = userEvents.Select(e => e.EventId).ToList();
+                // var userEventsIds = userEvents.Select(e => e.EventId).ToList();
 
-                var events = await _context.EventDetails.Where(e => userEventsIds.Contains(e.EventId)).ToListAsync();
+                // var events = await _context.EventDetails.Where(e => userEventsIds.Contains(e.EventId)).ToListAsync();
 
-                return events;
+                return userEvents;
 
             }
 
