@@ -4,14 +4,16 @@ using EcoServiceApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EcoServiceApi.Migrations
 {
     [DbContext(typeof(EcoServiceContext))]
-    partial class EcoServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20190626112855_pollution model changed")]
+    partial class pollutionmodelchanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

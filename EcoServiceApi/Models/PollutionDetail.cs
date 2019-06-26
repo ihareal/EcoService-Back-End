@@ -23,6 +23,10 @@ namespace EcoServiceApi.Models
 
         public string Description { get; set; }
 
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
         [Required]
         public string Status { get; set; }
 
