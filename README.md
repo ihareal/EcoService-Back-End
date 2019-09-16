@@ -1,2 +1,3 @@
 # EcoServiceApi
-# My diploma project
+# Diploma project
+# .Net core & web api
